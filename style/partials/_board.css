@@ -9,6 +9,7 @@ body {
 
 #main
 {
+
     border: 1px solid green;
 }
 #board {
@@ -26,6 +27,7 @@ position: relative;
     background: url("../../assets/boat.png");
     width: 192px;
     height: 64px;
+    position: absolute;
     background-repeat: no-repeat;
     background-size: cover;
     /*margin: 50px;*/
