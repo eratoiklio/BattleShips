@@ -7,12 +7,12 @@ body {
     padding: 0;
 }
 
-#board
+#main
 {
     border: 1px solid green;
 }
-#board div {
-
+#board {
+position: relative;
     width: 640px;
     height: 640px;
     border-right: 1px solid #CCC;
@@ -24,10 +24,10 @@ body {
 
 .boat {
     background: url("../../assets/boat.png");
-    width: 200px;
-    height: 100px;
+    width: 192px;
+    height: 64px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     /*margin: 50px;*/
     border: 1px solid violet;
 }
