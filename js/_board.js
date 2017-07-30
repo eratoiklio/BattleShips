@@ -1,17 +1,20 @@
 // var boat = require("./_boat.js")
 
+class Board {
 
-     class Board{
-        setBoard()
-        {    $("#board").find("div").droppable({
-                drop: function(event, ui) {
-                    // console.log(this.id);
-                    // console.log(ui);
-                    // console.log(event);
+    constructor()
+    {
+        $("#board").find("div").droppable({
+            drop: function(event, ui) {
+                console.log(this.id);
+                // console.log(ui);
+                //      console.log(event);
+                  let tabShip =$(ui.draggable).data("boat");
+                  console.log(tabShip);
+            }
+        });
+    }
 
-                }
-            });}
-    //
-    // // new Boat();
-     }
-     export default Board;
+
+}
+export default Board;
