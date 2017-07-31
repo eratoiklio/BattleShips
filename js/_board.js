@@ -2,19 +2,31 @@
 
 class Board {
 
-    constructor()
+    constructor(tabOfBoats)
     {
+        this.tabOfBoats =tabOfBoats;
         var boardThis = this;
+        this.nrX=""
         $("#board").droppable({
             drop: function(event, ui) {
                 var thisPos = $(ui.draggable).offset();
                 var boardPos = $("#board").offset();
                 var x = thisPos.left - boardPos.left;
                 var y = thisPos.top - boardPos.top;
-                console.log("x: " + x + " y: " + y);
+                // console.log("x: " + x + " y: " + y);
                 boardThis.snap(ui.draggable, x, y);
             }
+
         });
+    }
+    shouldRevert(divBout)
+    {
+        console.log($(divBout).css("top"));
+        console.log($(divBout).css("left"));
+        console.log($(divBout).hasClass("rotated"));
+        console.log($(divBout).data("boat").id);
+        return false;
+
     }
     snap(element, x, y)
     {
