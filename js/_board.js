@@ -1,5 +1,5 @@
 // var boat = require("./_boat.js")
-
+import Coordinates from './_coordinates.js'
 class Board {
 
     constructor(tabOfBoats)
@@ -17,8 +17,7 @@ class Board {
                 boardThis.snap(ui.draggable, x, y);
                 const yIndex = parseInt($(ui.draggable).css("top")) / 64; //128px/64
                 const xIndex = parseInt($(ui.draggable).css("left")) / 64;
-                ui.draggable.data("boat").xIndex = xIndex;
-                ui.draggable.data("boat").yIndex = yIndex;
+                ui.draggable.data("boat").setPosition(new Coordinates(xIndex, yIndex));
                 console.log(ui.draggable.data("boat"));
             }
 
@@ -30,12 +29,12 @@ class Board {
         // console.log($(divBoaut).css("left"));
         // console.log($(divBoaut).hasClass("rotated"));
         // console.log($(divBoaut).data("boat").id);
-        const draggBoat = $(divBoaut).data("boat");
+        const dragBoat = $(divBoaut).data("boat");
         // TODO: nie działa - zdebugować
         let revert = false;
         $(this.tabOfBoats).each((index, element) => {
-            if (!(element.id == draggBoat.id)) {
-                if (element.xIndex == draggBoat.xIndex && element.yIndex == draggBoat.yIndex) {
+            if (!(element.id == dragBoat.id)) {
+                if (false) {
                     revert = true;
                     return false;
                 }

@@ -5,11 +5,11 @@ $(() => {
     const tabOfBoats = [];
     const board =new Board(tabOfBoats);
     $(".boat").each(function(index, element) {
-        let boat = new Boat(element.id, board);
+        let boat = new Boat(element.id, board,3);
         tabOfBoats.push(boat);
         // console.log(boat.id);
         $(element).data("boat", boat);
 
     });
-    
+
 });
