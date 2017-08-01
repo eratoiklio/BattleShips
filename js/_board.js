@@ -14,18 +14,17 @@ class Board {
                 var x = thisPos.left - boardPos.left;
                 var y = thisPos.top - boardPos.top;
                 const isRotated = $(ui.draggable).hasClass("rotated");
-                console.log("x: " + x + " y: " + y);
+                // console.log("x: " + x + " y: " + y);
                 boardThis.snap(ui.draggable, x, y, isRotated);
 
                 let yIndex = parseInt($(ui.draggable).css("top")) / 64; //128px/64
                 let xIndex = parseInt($(ui.draggable).css("left")) / 64;
-                if(isRotated)
-                {
+                if (isRotated) {
                     yIndex -= 1;
                     xIndex += 1;
                 }
                 ui.draggable.data("boat").setPosition(new Coordinates(xIndex, yIndex));
-                console.log(ui.draggable.data("boat"));
+            //    console.log(ui.draggable.data("boat"));
             }
 
         });
@@ -41,10 +40,11 @@ class Board {
         let revert = false;
         $(this.tabOfBoats).each((index, element) => {
             if (!(element.id == dragBoat.id)) {
-                if (false) {
+                console.log(dragBoat);
+                if (dragBoat.startPos.x >= element.privateZone[0].x && element.privateZone[1].x >= dragBoat.startPos.x && dragBoat.startPos.y >= element.privateZone[0].y && element.privateZone[1].y >= dragBoat.startPos.y) {
                     revert = true;
                     return false;
-                }
+                 }
             }
         });
         return revert;
