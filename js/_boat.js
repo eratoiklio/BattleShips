@@ -4,6 +4,8 @@ class Boat {
     this.id=id;
     this.board=board;
     let tempThis= this;
+    this.xIndex=-1;
+    this.yIndex=-1;
         $(".boat").draggable({revert : function(dropped)
         {
             return tempThis.board.shouldRevert(this);

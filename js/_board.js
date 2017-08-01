@@ -4,9 +4,9 @@ class Board {
 
     constructor(tabOfBoats)
     {
-        this.tabOfBoats =tabOfBoats;
+        this.tabOfBoats = tabOfBoats;
         var boardThis = this;
-        this.nrX=""
+
         $("#board").droppable({
             drop: function(event, ui) {
                 var thisPos = $(ui.draggable).offset();
@@ -15,17 +15,33 @@ class Board {
                 var y = thisPos.top - boardPos.top;
                 // console.log("x: " + x + " y: " + y);
                 boardThis.snap(ui.draggable, x, y);
+                const yIndex = parseInt($(ui.draggable).css("top")) / 64; //128px/64
+                const xIndex = parseInt($(ui.draggable).css("left")) / 64;
+                ui.draggable.data("boat").xIndex = xIndex;
+                ui.draggable.data("boat").yIndex = yIndex;
+                console.log(ui.draggable.data("boat"));
             }
 
         });
     }
-    shouldRevert(divBout)
+    shouldRevert(divBoaut)
     {
-        console.log($(divBout).css("top"));
-        console.log($(divBout).css("left"));
-        console.log($(divBout).hasClass("rotated"));
-        console.log($(divBout).data("boat").id);
-        return false;
+        // console.log($(divBoaut).css("top"));
+        // console.log($(divBoaut).css("left"));
+        // console.log($(divBoaut).hasClass("rotated"));
+        // console.log($(divBoaut).data("boat").id);
+        const draggBoat = $(divBoaut).data("boat");
+        // TODO: nie działa - zdebugować
+        let revert = false;
+        $(this.tabOfBoats).each((index, element) => {
+            if (!(element.id == draggBoat.id)) {
+                if (element.xIndex == draggBoat.xIndex && element.yIndex == draggBoat.yIndex) {
+                    revert = true;
+                    return false;
+                }
+            }
+        });
+        return revert;
 
     }
     snap(element, x, y)
