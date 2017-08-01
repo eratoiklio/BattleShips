@@ -13,10 +13,17 @@ class Board {
                 var boardPos = $("#board").offset();
                 var x = thisPos.left - boardPos.left;
                 var y = thisPos.top - boardPos.top;
-                // console.log("x: " + x + " y: " + y);
-                boardThis.snap(ui.draggable, x, y);
-                const yIndex = parseInt($(ui.draggable).css("top")) / 64; //128px/64
-                const xIndex = parseInt($(ui.draggable).css("left")) / 64;
+                const isRotated = $(ui.draggable).hasClass("rotated");
+                console.log("x: " + x + " y: " + y);
+                boardThis.snap(ui.draggable, x, y, isRotated);
+
+                let yIndex = parseInt($(ui.draggable).css("top")) / 64; //128px/64
+                let xIndex = parseInt($(ui.draggable).css("left")) / 64;
+                if(isRotated)
+                {
+                    yIndex -= 1;
+                    xIndex += 1;
+                }
                 ui.draggable.data("boat").setPosition(new Coordinates(xIndex, yIndex));
                 console.log(ui.draggable.data("boat"));
             }
@@ -43,10 +50,14 @@ class Board {
         return revert;
 
     }
-    snap(element, x, y)
+    snap(element, x, y, isRotated)
     {
         let snapY = y - (y % 64);
         let snapX = x - (x % 64);
+        if (isRotated) {
+            snapY += 64;
+            snapX -= 64;
+        }
         $(element).css({top: snapY, left: snapX});
     }
 }
