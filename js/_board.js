@@ -36,12 +36,13 @@ class Board {
         // console.log($(divBoaut).hasClass("rotated"));
         // console.log($(divBoaut).data("boat").id);
         const dragBoat = $(divBoat).data("boat");
-        // TODO: nie działa - zdebugować
         let revert = false;
         $(this.tabOfBoats).each((index, element) => {
             if (!(element.id == dragBoat.id)) {
-                console.log(dragBoat);
-                if (dragBoat.startPos.x+(dragBoat.isRotated?0:dragBoat.mast) >= element.privateZone[0].x && element.privateZone[1].x >= dragBoat.startPos.x && dragBoat.startPos.y >= element.privateZone[0].y && element.privateZone[1].y >= dragBoat.startPos.y) {
+                if (dragBoat.startPos.x+(dragBoat.isRotated?0:dragBoat.mast) >= element.privateZone[0].x
+                && element.privateZone[1].x >= dragBoat.startPos.x
+                && dragBoat.startPos.y >= element.privateZone[0].y
+                && element.privateZone[1].y >= dragBoat.startPos.y) {
                     revert = true;
                     return false;
                  }
