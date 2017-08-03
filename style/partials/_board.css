@@ -23,19 +23,22 @@ body {
 }
 
 .boat {
-    background: url("../../assets/mast3.png");
-    width: 192px;
-    height: 64px;
     position: absolute;
     background-repeat: no-repeat;
     background-size: cover;
     /*margin: 50px;*/
-    border: 1px solid violet;
+    border: 2px solid red;
+}
+.mast3 {
+    background: url("../../assets/mast3.png");
+    width: 192px;
+    height: 64px;
+    /*margin: 50px;*/
+
 }
 
-.rotated {
-    transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
+.rotatedmast3 {
+    width: 64px;
+    height: 192px;
+    background: green;
 }

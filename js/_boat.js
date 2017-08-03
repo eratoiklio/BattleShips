@@ -7,7 +7,8 @@ class Boat {
         let tempThis = this;
         this.mast = mast;
         this.startPos = new Coordinates(0, 0);
-        this.isRotated = $("#" + this.id).hasClass("rotated");
+        this.isRotated =false;
+        $("#" + this.id).data("rotated", this.isRotated);
         this.privateZone = [
             new Coordinates(this.startPos.x - 1, this.startPos.y - 1),
             new Coordinates(this.startPos.x + (this.isRotated
@@ -23,13 +24,16 @@ class Boat {
             }
         });
         $("#" + this.id).on("dblclick", () => {
-            $("#" + this.id).toggleClass("rotated");
+            $("#" + this.id).toggleClass("rotatedmast3");
+            $("#" + this.id).toggleClass("mast3");
+            this.isRotated=!this.isRotated;
+            $("#" + this.id).data("rotated", this.isRotated);
+
         });
 
     }
     setPosition(cord) {
         this.startPos = cord;
-        this.isRotated = $("#" + this.id).hasClass("rotated");
         this.privateZone = [
             new Coordinates(this.startPos.x - 1, this.startPos.y - 1),
             new Coordinates(this.startPos.x + (this.isRotated
