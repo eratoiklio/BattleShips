@@ -42,7 +42,6 @@ class Boat {
                 ? this.mast
                 : 1))
         ];
-        // console.log(this.privateZone);
     }
 }
 export default Boat;
