@@ -29,6 +29,20 @@ body {
     /*margin: 50px;*/
     border: 2px solid red;
 }
+.mast1 {
+    background: url("../../assets/mast1.png");
+    width: 64px;
+    height: 64px;
+    /*margin: 50px;*/
+
+}
+.mast2 {
+    background: url("../../assets/mast2.png");
+    width: 128px;
+    height: 64px;
+    /*margin: 50px;*/
+
+}
 .mast3 {
     background: url("../../assets/mast3.png");
     width: 192px;
@@ -36,9 +50,31 @@ body {
     /*margin: 50px;*/
 
 }
+.mast4 {
+    background: url("../../assets/mast4.png");
+    width: 256px;
+    height: 64px;
+    /*margin: 50px;*/
 
+}
+
+.rotatedmast1 {
+    width: 64px;
+    height: 64px;
+    background: green;
+}
+.rotatedmast2 {
+    width: 64px;
+    height: 128px;
+    background: green;
+}
 .rotatedmast3 {
     width: 64px;
     height: 192px;
+    background: green;
+}
+.rotatedmast4 {
+    width: 64px;
+    height: 256px;
     background: green;
 }
