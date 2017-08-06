@@ -20,8 +20,6 @@ class Board {
         $("button").on("click", ()=>{
             $(".boat").draggable("disable");
             $(".board").css("display", "inline-block");
-            // $("#ai-board").css("display", "inline-block");
-
         });
 
     }
