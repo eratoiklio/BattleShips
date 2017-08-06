@@ -5,10 +5,10 @@ class Board {
     {
         this.tabOfBoats = tabOfBoats;
 
-        $("#board").droppable({
+        $("#gamer_board").droppable({
             drop: function(event, ui) {
                 var thisPos = $(ui.draggable).offset();
-                var boardPos = $("#board").offset();
+                var boardPos = $("#gamer_board").offset();
                 var x = thisPos.left - boardPos.left;
                 var y = thisPos.top - boardPos.top;
                 x = (x - x % 64) / 64;
@@ -19,6 +19,8 @@ class Board {
 
         $("button").on("click", ()=>{
             $(".boat").draggable("disable");
+            $(".board").css("display", "inline-block");
+            // $("#ai-board").css("display", "inline-block");
 
         });
 
