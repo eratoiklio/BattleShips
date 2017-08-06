@@ -28,7 +28,7 @@ class AiBoard {
         }
         for (let i = 0; i < coordtab.length; i++) {
             for (let j = 0; j < this.aiSetBoats.length; j++) {
-                if (coordtab[i].x >= this.aiBoats[j].privateZone[0].x && this.aiBoats[j].privateZone[1].x >= coordtab[i].x && coordtab[i].y >= this.aiBoats[j].privateZone[0].y && this.aiBoats[j].privateZone[1].y >= coordtab[i].y) {
+                if (boat.privateZone[1].y>9 || boat.privateZone[1].x>9 || coordtab[i].x >= this.aiBoats[j].privateZone[0].x && this.aiBoats[j].privateZone[1].x >= coordtab[i].x && coordtab[i].y >= this.aiBoats[j].privateZone[0].y && this.aiBoats[j].privateZone[1].y >= coordtab[i].y) {
                     {
                         return true;
                     }
@@ -46,7 +46,7 @@ class AiBoard {
             do
             {
                 this.setAiBoat(this.aiBoats[i]);
-                rev =this.shouldRevert(this.aiBoats[i]);
+                rev = this.shouldRevert(this.aiBoats[i]);
             }while(rev);
         }
     }
