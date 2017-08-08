@@ -34,9 +34,12 @@ class AiBoard extends Board {
     {
         boat.isRotated = Math.random() >= 0.5;
         //boat.startPos = new Coordinates(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10));
-        boat.setPosition(new Coordinates(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)));
+        if (boat.isRotated)
+            boat.setPosition(new Coordinates(Math.floor(Math.random() * 10), Math.floor(Math.random() * (10 - boat.mast))));
+        else
+            boat.setPosition(new Coordinates(Math.floor(Math.random() * (10 - boat.mast)), Math.floor(Math.random() * 10)));
 
-    }
+        }
     shouldRevert(boat)
     {
 
@@ -51,11 +54,8 @@ class AiBoard extends Board {
         boat.coord = coordtab.slice();
         for (let i = 0; i < coordtab.length; i++) {
             for (let j = 0; j < this.aiSetBoats.length; j++) {
-                if (boat.privateZone[1].y > 9 || boat.privateZone[1].x > 9 || coordtab[i].x >= this.tabOfBoats[j].privateZone[0].x && this.tabOfBoats[j].privateZone[1].x >= coordtab[i].x && coordtab[i].y >= this.tabOfBoats[j].privateZone[0].y && this.tabOfBoats[j].privateZone[1].y >= coordtab[i].y) {
-                    {
-                        return true;
-                    }
-
+                if (coordtab[i].x >= this.aiSetBoats[j].privateZone[0].x && this.aiSetBoats[j].privateZone[1].x >= coordtab[i].x && coordtab[i].y >= this.aiSetBoats[j].privateZone[0].y && this.aiSetBoats[j].privateZone[1].y >= coordtab[i].y) {
+                    return true;
                 }
             }
         }
