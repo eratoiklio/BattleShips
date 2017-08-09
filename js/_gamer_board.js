@@ -56,35 +56,6 @@ class GamerBoard extends Board{
             return false;
         }
     }
-    // var shot = {
-    //     MISS: 1,
-    //     HIT: 2,
-    //     SUNK: 3
-    // };
-    //
-    // shotResult(xIndex, yIndex)
-    // {
-    //     $(tabOfBoats).each((index, element) {
-    //         let boatCondition = shot.MISS;
-    //         element.hitElement = [];
-    //         let isSunk = true;
-    //         for (var i = 0; i < element.coord.length; i++) {
-    //             if (element.coord[i].x == xIndex && element.coord[i].y == yIndex) {
-    //                 boatCondition = shot.HIT;
-    //                 element.hitElement[i] = true;
-    //             }
-    //             else {
-    //                 element.hitElement[i]=false;
-    //             }
-    //             isSunk *= element.hitElement[i];
-    //
-    //         };
-    //         if (element.isSunk) {
-    //             boatCondition = shot.SUNK;
-    //         }
-    //     });
-    //     return boatCondition;
-    // }
 
 }
 export default GamerBoard;

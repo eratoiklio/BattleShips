@@ -1,6 +1,7 @@
 import GamerBoard from "./_gamer_board.js";
 import AiBoard from "./_ai_board.js";
 import Boat from "./_boat.js";
+import Coordinates from "./_coordinates.js";
 $(() => {
 
     const tabOfBoats = [];
@@ -52,7 +53,18 @@ $(() => {
     const aiBoard = new AiBoard(aiBoats);
     aiBoard.setAllAiBoats();
     console.log(aiBoard.aiSetBoats);
+    
 
-
-
+        let aimCoord;
+        do
+        {
+            aimCoord = aiBoard.aim();
+            console.log(aimCoord);
+        }
+        while (!aimCoord instanceof Coordinates);
+        alert(aimCoord.x + " " + aimCoord.y);
+        aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = gamerBoard.shotResult(aimCoord.x, aimCoord.y);
+        console.log(aiBoard);
+    // }
+    // this.aiTurn();
 });

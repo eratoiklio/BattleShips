@@ -9,6 +9,7 @@ class AiBoard extends Board {
         super(tabOfBoats);
         // this.tabOfBoats = tabOfBoats;
         this.aiSetBoats = [];
+        this.checkedBoard=[];
         this.divBoard = $("#ai_board");
         this.divBoard.on("click", (event) => {
             var x;
@@ -25,19 +26,17 @@ class AiBoard extends Board {
             x = (x - x % 64) / 64;
             y = (y - y % 64) / 64;
             console.log(this.shotResult(x, y));
-            //console.log(x);
-            //    console.log(y);
+
 
         });
     }
     setAiBoat(boat)
     {
         boat.isRotated = Math.random() >= 0.5;
-        //boat.startPos = new Coordinates(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10));
         if (boat.isRotated)
-            boat.setPosition(new Coordinates(Math.floor(Math.random() * 10), Math.floor(Math.random() * (10 - boat.mast))));
+            boat.setPosition(new Coordinates(Math.floor(Math.random() * 10), Math.floor(Math.random() * (10 - boat.mast+1))));
         else
-            boat.setPosition(new Coordinates(Math.floor(Math.random() * (10 - boat.mast)), Math.floor(Math.random() * 10)));
+            boat.setPosition(new Coordinates(Math.floor(Math.random() * (10 - boat.mast+1)), Math.floor(Math.random() * 10)));
 
         }
     shouldRevert(boat)
@@ -74,33 +73,18 @@ class AiBoard extends Board {
             while (rev) ;
             }
         }
-    // var shot = {
-    //     MISS: 1,
-    //     HIT: 2,
-    //     SUNK: 3
-    // };
-    // shotResult(xIndex, yIndex)
-    // {
-    //     $(tabOfBoats).each((index, element) {
-    //         let boatCondition = shot.MISS;
-    //         element.hitElement = [];
-    //         let isSunk = true;
-    //         for (var i = 0; i < element.coord.length; i++) {
-    //             if (element.coord[i].x == xIndex && element.coord[i].y == yIndex) {
-    //                 boatCondition = shot.HIT;
-    //                 element.hitElement[i] = true;
-    //             }
-    //             else {
-    //                 element.hitElement[i]=false;
-    //             }
-    //             isSunk *= element.hitElement[i];
-    //
-    //         };
-    //         if (element.isSunk) {
-    //             boatCondition = shot.SUNK;
-    //         }
-    //     });
-    //     return boatCondition;
-    // }
+        aim()
+        {
+            let indexX = Math.floor(Math.random()*10);
+            let indexY = Math.floor(Math.random()*10);
+
+            for(let i=0; i<this.checkedBoard.length;i++)
+            for (var j = 0; j < this.checkedBoard.length; j++) {
+                if(this.checkedBoard[i][j]==shot.MISS ||this.checkedBoard[i][j]==shot.HIT||this.checkedBoard[i][j]==this.checkedBoard[i][j]==shot.SUNK)
+                return true;
+            }
+            return new Coordinates(indexX, indexY);
+        }
+
 }
 export default AiBoard;
