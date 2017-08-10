@@ -9,7 +9,7 @@ class Game
     constructor()
     {
         const tabOfBoats = [];
-        this.gamerBoard = new GamerBoard(tabOfBoats, this);
+        this.gamerBoard = new GamerBoard(tabOfBoats, this, "gamer_board");
         $(".mast1").each((index, element) => {
             let boat = new Boat(element.id, this.gamerBoard, 1);
             tabOfBoats.push(boat);
@@ -54,47 +54,45 @@ class Game
             aiBoats.push(new Boat("aiBoat" + id, null, 1));
             id++;
         }
-        this.aiBoard = new AiBoard(aiBoats, this);
+        this.aiBoard = new AiBoard(aiBoats, this,"ai_board");
         this.aiBoard.setAllAiBoats();
         console.log(this.aiBoard.aiSetBoats);
         $("button").on("click", () => {
             $(".boat").draggable("disable");
             $(".board").css("display", "inline-block");
-            this.startGame();
+            this.aiTurn();
         });
         // TODO: sprawdzenie czy gracz rozstawił statki
     }
 
-    startGame()
-    {
 
-        do {
-
-            this.aiTurn();
-            this.gamerTurn();
-        } while (false);
-
-    }
     gamerTurn()
     {
         $("#ai_board").on('click', (event)=>{ this.aiBoard.getShot(event)});
     }
+    playerShotResult(shotResult)
+    {
+        if(shotResult==3)
+        {
+            // TODO: 1
+        }
+        else {
+            this.aiTurn();
+        }
+    }
     aiTurn()
     {
         $("#ai_board").off('click');
-        let aimCoord;
-        do
-        {
-            aimCoord = this.aiBoard.aim();
-            console.log(aimCoord);
-        }
-        while (!aimCoord instanceof Coordinates)
-        ;
+        let aimCoord=this.aiBoard.aim();
+
         alert(aimCoord.x + " " + aimCoord.y);
         this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = this.gamerBoard.shotResult(aimCoord.x, aimCoord.y);
         console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
         if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK) {
-            // TODO:
+            // TODO: 1
+        }
+        else {
+            this.gamerTurn();
         }
 
     }

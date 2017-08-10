@@ -5,10 +5,9 @@ import shot from './_board.js';
 
 class AiBoard extends Board {
 
-    constructor(tabOfBoats, game)
+    constructor(tabOfBoats, game, board)
     {
-        super(tabOfBoats, game);
-        // this.tabOfBoats = tabOfBoats;
+        super(tabOfBoats, game, board);
         this.aiSetBoats = [];
         this.checkedBoard = [];
         for (var i = 0; i < 10; i++) {
@@ -34,22 +33,8 @@ class AiBoard extends Board {
         y -= event.currentTarget.offsetTop;
         let xIndex = (x - x % 64) / 64;
         let yIndex = (y - y % 64) / 64;
-        console.log(this.shotResult(xIndex, yIndex));
-        var hitResultDiv = $('<div>');
-
-        if (this.shotResult(xIndex, yIndex) == 1) {
-            hitResultDiv.css({"display":"inline-block","background-image": "url(assets/miss.png)", "height": "64px", "width": "64px", "position":"absolute", "top": yIndex*64, "left":xIndex*64});
-
-        } else if (this.shotResult(xIndex, yIndex) == 2) {
-             hitResultDiv.css({"display":"inline-block","background-image": "url(assets/hit.png)", "height": "64px", "width": "64px","position":"absolute", "top": yIndex*64, "left":xIndex*64})
-
-        } else {
-            // potrzebuje statku , zeby wiedzieć ilu masztopwiec i jaka rotacja:(
-            hitResultDiv.css({"display":"inline-block","background-image": "url(assets/sunk.png)", "height": "64px", "width": "64px","position":"absolute", "top": yIndex*64, "left":xIndex*64})
-
-        }
-        $("#ai_board").append(hitResultDiv);
-
+        let shotResult = this.shotResult(xIndex, yIndex);
+        this.game.playerShotResult(shotResult);
     }
 
     setAiBoat(boat)
@@ -97,16 +82,16 @@ class AiBoard extends Board {
         }
     aim()
     {
-        let indexX = Math.floor(Math.random() * 10);
-        let indexY = Math.floor(Math.random() * 10);
-
-        for (let i = 0; i < this.checkedBoard.length; i++)
-            for (var j = 0; j < this.checkedBoard.length; j++) {
-                if (this.checkedBoard[i][j] == 1 || this.checkedBoard[i][j] == 2 || this.checkedBoard[i][j] == this.checkedBoard[i][j] == 3)
-                    return true;
-                }
-            return new Coordinates(indexX, indexY);
+        let indexX;
+        let indexY;
+        do
+        {
+            indexX = Math.floor(Math.random() * 10);
+            indexY = Math.floor(Math.random() * 10);
         }
+        while (this.checkedBoard[indexX][indexY] == 1 || this.checkedBoard[indexX][indexY] == 2 || this.checkedBoard[indexX][indexY] == 3);
+        return new Coordinates(indexX, indexY);
+    }
 
 }
 export default AiBoard;
