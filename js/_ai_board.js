@@ -4,12 +4,16 @@ import Board from './_board.js';
 
 class AiBoard extends Board {
 
-    constructor(tabOfBoats)
+    constructor(tabOfBoats, game)
     {
-        super(tabOfBoats);
+        super(tabOfBoats, game);
         // this.tabOfBoats = tabOfBoats;
         this.aiSetBoats = [];
         this.checkedBoard=[];
+        for (var i = 0; i < 10; i++) {
+            this.checkedBoard[i]=new Array(10);
+        }
+
         this.divBoard = $("#ai_board");
         this.divBoard.on("click", (event) => {
             var x;
@@ -80,7 +84,7 @@ class AiBoard extends Board {
 
             for(let i=0; i<this.checkedBoard.length;i++)
             for (var j = 0; j < this.checkedBoard.length; j++) {
-                if(this.checkedBoard[i][j]==shot.MISS ||this.checkedBoard[i][j]==shot.HIT||this.checkedBoard[i][j]==this.checkedBoard[i][j]==shot.SUNK)
+                if(this.checkedBoard[i][j]==1 || this.checkedBoard[i][j]==2 ||this.checkedBoard[i][j]==this.checkedBoard[i][j]==3)
                 return true;
             }
             return new Coordinates(indexX, indexY);

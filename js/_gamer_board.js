@@ -1,10 +1,11 @@
-import Coordinates from './_coordinates.js'
-import Board from './_board.js'
+import Coordinates from './_coordinates.js';
+import Board from './_board.js';
+import Game from './_game.js';
 class GamerBoard extends Board{
 
-    constructor(tabOfBoats)
+    constructor(tabOfBoats, game)
     {
-        super(tabOfBoats);
+        super(tabOfBoats, game);
         // this.tabOfBoats = tabOfBoats;
 
         $("#gamer_board").droppable({
@@ -22,6 +23,7 @@ class GamerBoard extends Board{
         $("button").on("click", () => {
             $(".boat").draggable("disable");
             $(".board").css("display", "inline-block");
+            game.aiTurn();
         });
 
     }

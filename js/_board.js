@@ -5,9 +5,10 @@ var shot = {
 };
 class Board
 {
-    constructor(tabOfBoats)
+    constructor(tabOfBoats, game)
     {
         this.tabOfBoats = tabOfBoats;
+        this.game=game;
     }
     shotResult(xIndex, yIndex)
     {
