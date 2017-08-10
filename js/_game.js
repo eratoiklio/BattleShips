@@ -68,12 +68,9 @@ class Game
     }
     playerShotResult(shotResult)
     {
-        if(shotResult==3)
+        if(shotResult==3 || this.aiBoard.win())
         {
-            if(this.aiBoard.win())
-            {
-                alert("You win !!!");
-            };
+            alert("You win !!!");
         }
         else {
             this.aiTurn();
@@ -87,11 +84,8 @@ class Game
         alert(aimCoord.x + " " + aimCoord.y);
         this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = this.gamerBoard.shotResult(aimCoord.x, aimCoord.y);
         console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
-        if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK) {
-            if(this.gamerBoard.win())
-            {
-                alert("You lost :(");
-            };
+        if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK && this.gamerBoard.win()) {
+                    alert("You lost :(");
         }
         else {
             this.gamerTurn();
