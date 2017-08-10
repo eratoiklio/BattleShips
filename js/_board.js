@@ -1,4 +1,4 @@
-var shot = {
+export var shot = {
     MISS: 1,
     HIT: 2,
     SUNK: 3

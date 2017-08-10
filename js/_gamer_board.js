@@ -19,14 +19,8 @@ class GamerBoard extends Board{
                 ui.draggable.data("tempIndex", new Coordinates(x, y));
             }
         });
-
-        $("button").on("click", () => {
-            $(".boat").draggable("disable");
-            $(".board").css("display", "inline-block");
-            game.aiTurn();
-        });
-
     }
+
 
     shouldRevert(divBoat)
     {
