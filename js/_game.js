@@ -13,28 +13,24 @@ class Game
         $(".mast1").each((index, element) => {
             let boat = new Boat(element.id, this.gamerBoard, 1);
             tabOfBoats.push(boat);
-            // console.log(boat.id);
             $(element).data("boat", boat);
 
         });
         $(".mast2").each((index, element) => {
             let boat = new Boat(element.id, this.gamerBoard, 2);
             tabOfBoats.push(boat);
-            // console.log(boat.id);
             $(element).data("boat", boat);
 
         });
         $(".mast3").each((index, element) => {
             let boat = new Boat(element.id, this.gamerBoard, 3);
             tabOfBoats.push(boat);
-            // console.log(boat.id);
             $(element).data("boat", boat);
 
         });
         $(".mast4").each((index, element) => {
             let boat = new Boat(element.id, this.gamerBoard, 4);
             tabOfBoats.push(boat);
-            // console.log(boat.id);
             $(element).data("boat", boat);
 
         });
@@ -74,7 +70,10 @@ class Game
     {
         if(shotResult==3)
         {
-            // TODO: 1
+            if(this.aiBoard.win())
+            {
+                alert("You win !!!");
+            };
         }
         else {
             this.aiTurn();
@@ -89,7 +88,10 @@ class Game
         this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = this.gamerBoard.shotResult(aimCoord.x, aimCoord.y);
         console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
         if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK) {
-            // TODO: 1
+            if(this.gamerBoard.win())
+            {
+                alert("You lost :(");
+            };
         }
         else {
             this.gamerTurn();

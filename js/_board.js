@@ -72,6 +72,17 @@ class Board
 
         return boatCondition;
     }
-    // TODO: funkcja sprawdzająca czy wszystkie sataki zatopione zwraca tru lub false
+    // TODO: funkcja sprawdzająca czy wszystkie sataki zatopione zwraca true lub false
+    win()
+    {
+        let isWin=true;
+        for (let i = 0; i < this.tabOfBoats.length; i++) {
+            for (let j = 0; j < this.tabOfBoats[i].hitElement.length; j++) {
+                isWin*=this.tabOfBoats[i].hitElement[j];
+                }
+            }
+
+        return isWin;
+    }
 }
 export default Board;
