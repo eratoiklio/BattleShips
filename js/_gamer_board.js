@@ -3,9 +3,9 @@ import Board from './_board.js';
 import Game from './_game.js';
 class GamerBoard extends Board{
 
-    constructor(tabOfBoats, game)
+    constructor(tabOfBoats, game, board)
     {
-        super(tabOfBoats, game);
+        super(tabOfBoats, game, board);
         // this.tabOfBoats = tabOfBoats;
 
         $("#gamer_board").droppable({
