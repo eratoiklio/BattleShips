@@ -80,20 +80,20 @@ body, div {
 .rotatedmast1 {
     width: 64px;
     height: 64px;
-    background: green;
+    background: url("../../assets/rotatedmast1.png");
 }
 .rotatedmast2 {
     width: 64px;
     height: 128px;
-    background: green;
+    background: url("../../assets/rotatedmast2.png");
 }
 .rotatedmast3 {
     width: 64px;
     height: 192px;
-    background: green;
+    background: url("../../assets/rotatedmast3.png");
 }
 .rotatedmast4 {
     width: 64px;
     height: 256px;
-    background: green;
+    background: url("../../assets/rotatedmast4.png");
 }
