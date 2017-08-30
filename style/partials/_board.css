@@ -19,6 +19,7 @@ body, div {
     width: 1310px;
     height: 300px;
     position: absolute;
+    top:0;
     background-color: beige;
 
     background-repeat: no-repeat;

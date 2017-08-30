@@ -50,56 +50,69 @@ class Game
             aiBoats.push(new Boat("aiBoat" + id, null, 1));
             id++;
         }
-        this.aiBoard = new AiBoard(aiBoats, this,"ai_board");
+        this.aiBoard = new AiBoard(aiBoats, this, "ai_board");
         this.aiBoard.setAllAiBoats();
         console.log(this.aiBoard.aiSetBoats);
         $(".endSetting").on("click", () => {
             $(".boat").draggable("disable");
             $(".board").css("display", "inline-block");
-            console.log(this);
             $(".endSetting").remove();
             this.aiTurn();
         });
         // TODO: sprawdzenie czy gracz rozstawił statki
     }
 
-
     gamerTurn()
     {
-        $("#ai_board").on('click', (event)=>{ this.aiBoard.getShot(event)});
+        $("#ai_board").on('click', (event) => {
+            this.aiBoard.getShot(event)
+        });
     }
     playerShotResult(shotResult)
     {
-        if(shotResult==3 || this.aiBoard.win())
-        {
-            var winAlert= $('<div class="alert winAlert">Wygrałeś</wygrałeś>');
-            $("#main").prepend(winAlert);
-        }
-        else {
+        if (shotResult == 3 || this.aiBoard.win()) {
+            var winAlert = $('<div class="alert winAlert">Wygrałeś</wygrałeś>');
+            $(".board").off("click");
+            let confirmBtn = $('<button class="confirmBtn">OK</button>');
+            winAlert.append(confirmBtn);
+            confirmBtn.on("click", function() {
+                $(this).parent().remove();
+            });
+            $("#main").append(winAlert);
+
+        } else {
             this.aiTurn();
         }
     }
     aiTurn()
     {
         $("#ai_board").off('click');
-        let aimCoord=this.aiBoard.aim();
-        var aimAlert= $('<div class="alert aimAlert">').text("strzał na kordynaty x: "+aimCoord.x + " y:" + aimCoord.y);
+        let aimCoord = this.aiBoard.aim();
+        var aimAlert = $('<div class="alert aimAlert">').text("strzał na kordynaty x: " + aimCoord.x + " y:" + aimCoord.y);
         // var confirmBtn=$('<button class="confirmBtn">Zatwierdz</button>');
         // aimAlert.append(confirmBtn);
         // confirmBtn.on('click', ()=>{
         //     console.log("kliknięto zatwierdz");
         //     $(this).parent.remove();
         // });
-        $("#main").prepend(aimAlert);
-        var aimTimer=setTimeout(()=>{console.log("mineły 1,5sek");
-    $(aimAlert).remove();},1500);
+        $("#main").append(aimAlert);
+        var aimTimer = setTimeout(() => {
+            console.log("mineły 1,5sek");
+            $(aimAlert).remove();
+        }, 1500);
         this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = this.gamerBoard.shotResult(aimCoord.x, aimCoord.y);
         console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
         if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK && this.gamerBoard.win()) {
-            var lostAlert= $('<div class="alert winAlert">Wygrałeś</wygrałeś>');
-            $("#main").prepend(lostAlert);
-        }
-        else {
+            var lostAlert = $('<div class="alert winAlert">przegrałeś</wygrałeś>');
+            let confirmBtn = $('<button class="confirmBtn">OK</button>');
+
+            lostAlert.append(confirmBtn);
+            confirmBtn.on("click", function() {
+                $(this).parent().remove();
+            });
+            $(".board").off("click");
+            $("#main").append(lostAlert);
+        } else {
             this.gamerTurn();
         }
 
