@@ -9,7 +9,7 @@ body, div {
 }
 
 #main {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     width: 1310px;
     margin: 0 auto;
 
@@ -19,9 +19,8 @@ body, div {
     width: 1310px;
     height: 300px;
     position: absolute;
-    top:0;
+    top:30px;
     background-color: beige;
-
     background-repeat: no-repeat;
     background-position: left center;
     border: 1px solid GoldenRod;
@@ -70,10 +69,9 @@ body, div {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /*margin: 50px;*/
     top: 670px;
     left :0;
-    border: 1px solid pink;
+    /*border: 1px solid pink;*/
 }
 .mast1 {
     background: url("../../assets/mast1.png");
@@ -81,7 +79,6 @@ body, div {
     background-position: center;
     width: 64px;
     height: 64px;
-    /*margin: 50px;*/
 
 }
 .mast2 {
@@ -90,7 +87,6 @@ body, div {
     height: 64px;
     background-size: cover;
     background-position: center;
-    /*margin: 50px;*/
 
 }
 .mast3 {
@@ -99,7 +95,6 @@ body, div {
     height: 64px;
     background-size: cover;
     background-position: center;
-    /*margin: 50px;*/
 
 }
 .mast4 {
@@ -108,7 +103,6 @@ body, div {
     height: 64px;
     background-size: cover;
     background-position: center;
-    /*margin: 50px;*/
 
 }
 
