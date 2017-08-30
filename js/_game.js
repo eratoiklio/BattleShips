@@ -70,7 +70,7 @@ class Game
     }
     playerShotResult(shotResult)
     {
-        if (shotResult == 3 || this.aiBoard.win()) {
+        if (shotResult == 3 && this.aiBoard.win()) {
             var winAlert = $('<div class="alert winAlert">Wygrałeś</wygrałeś>');
             $(".board").off("click");
             let confirmBtn = $('<button class="confirmBtn">OK</button>');
@@ -97,15 +97,15 @@ class Game
         // });
         $("#main").append(aimAlert);
         var aimTimer = setTimeout(() => {
-            console.log("mineły 1,5sek");
             $(aimAlert).remove();
-        }, 1500);
+        }, 1000);
         this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = this.gamerBoard.shotResult(aimCoord.x, aimCoord.y);
-        console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
-        if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK && this.gamerBoard.win()) {
-            var lostAlert = $('<div class="alert winAlert">przegrałeś</wygrałeś>');
+        // console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
+        // console.log("wynik strzału ai"+(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == 3));
+        // console.log("czy wygrane"+this.gamerBoard.win());
+        if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == 3 && this.gamerBoard.win()) {
+            var lostAlert = $('<div class="alert lostAlert">przegrałeś</div>');
             let confirmBtn = $('<button class="confirmBtn">OK</button>');
-
             lostAlert.append(confirmBtn);
             confirmBtn.on("click", function() {
                 $(this).parent().remove();
