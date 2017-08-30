@@ -12,8 +12,42 @@ body, div {
     border: 1px solid green;
     width: 1310px;
     margin: 0 auto;
-}
 
+}
+.alert
+{
+    width: 1310px;
+    height: 300px;
+    position: absolute;
+    background-color: beige;
+
+    background-repeat: no-repeat;
+    background-position: left center;
+    border: 1px solid GoldenRod;
+    font-size: 2em;
+    text-align: center;
+    line-height: 300px;
+}
+.aimAlert
+{
+    background-image: url("../../assets/cannon.png");
+}
+.winAlert
+{
+    background-image: url("../../assets/medal.png");
+}
+.lostAlert
+{
+    background-image: url("../../assets/skull.png");
+}
+.confirmBtn
+{
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
 .board {
 
     position: relative;
@@ -96,4 +130,11 @@ body, div {
     width: 64px;
     height: 256px;
     background: url("../../assets/rotatedmast4.png");
+}
+.endSetting
+{
+    background: url("../../assets/compassRose.png");
+    width: 138px;
+    height:144px;
+
 }

@@ -53,9 +53,11 @@ class Game
         this.aiBoard = new AiBoard(aiBoats, this,"ai_board");
         this.aiBoard.setAllAiBoats();
         console.log(this.aiBoard.aiSetBoats);
-        $("button").on("click", () => {
+        $(".endSetting").on("click", () => {
             $(".boat").draggable("disable");
             $(".board").css("display", "inline-block");
+            console.log(this);
+            $(".endSetting").remove();
             this.aiTurn();
         });
         // TODO: sprawdzenie czy gracz rozstawił statki
@@ -70,7 +72,8 @@ class Game
     {
         if(shotResult==3 || this.aiBoard.win())
         {
-            alert("You win !!!");
+            var winAlert= $('<div class="alert winAlert">Wygrałeś</wygrałeś>');
+            $("#main").prepend(winAlert);
         }
         else {
             this.aiTurn();
@@ -80,12 +83,21 @@ class Game
     {
         $("#ai_board").off('click');
         let aimCoord=this.aiBoard.aim();
-
-        alert(aimCoord.x + " " + aimCoord.y);
+        var aimAlert= $('<div class="alert aimAlert">').text("strzał na kordynaty x: "+aimCoord.x + " y:" + aimCoord.y);
+        // var confirmBtn=$('<button class="confirmBtn">Zatwierdz</button>');
+        // aimAlert.append(confirmBtn);
+        // confirmBtn.on('click', ()=>{
+        //     console.log("kliknięto zatwierdz");
+        //     $(this).parent.remove();
+        // });
+        $("#main").prepend(aimAlert);
+        var aimTimer=setTimeout(()=>{console.log("mineły 1,5sek");
+    $(aimAlert).remove();},1500);
         this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] = this.gamerBoard.shotResult(aimCoord.x, aimCoord.y);
         console.log(this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y]);
         if (this.aiBoard.checkedBoard[aimCoord.x][aimCoord.y] == shot.SUNK && this.gamerBoard.win()) {
-                    alert("You lost :(");
+            var lostAlert= $('<div class="alert winAlert">Wygrałeś</wygrałeś>');
+            $("#main").prepend(lostAlert);
         }
         else {
             this.gamerTurn();
